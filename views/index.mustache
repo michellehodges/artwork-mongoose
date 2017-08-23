@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Dosis:700|Nunito" rel="stylesheet">
+  </head>
+  <body>
+    <h1> Welcome to our curated list of the current VMFA collection! </h1>
+
+    <h2> See our current collection below: </h2>
+    <ul>
+      {{ #collection }}
+      <li>
+          <img src="{{ image }}"><br>
+          <span>{{ artist }}</span>
+            <a href="#"> Edit </a><br>
+            {{#artwork}}
+              <span>{{ title }}</span>
+                <a href="#"> Edit </a><br>
+              <span>{{ medium }}</span>
+                <a href="#"> Edit </a><br>
+              <span>{{ year }}</span>
+                <a href="#"> Edit </a><br>
+            {{/artwork}}
+          <span>{{ tags }}</span>
+            <a href="#"> Edit </a><br>
+          <form method="post" action="/delete/{{ _id }}">
+            <!-- <input type="hidden" name="delobj" value={{_id}} > -->
+            <input type="submit" name="delete" value="Don't like? Delete!">
+          </form>
+      </li>
+      {{ /collection }}
+    </ul>
+
+    <h2> Are we missing any artwork? Add them here: </h2>
+    <form method="post" action="/add">
+      Artist : <input type="text" name="artist"><br>
+      Title : <input type="text" name="title"><br>
+      Medium : <input type="text" name="medium"><br>
+      Year : <input type="number" name="year"><br>
+      Colors : <input type="text" name="colors"><br>
+      <input type="submit" name="add" value="Add now!">
+    </form>
+  </body>
+</html>
